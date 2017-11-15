@@ -1,0 +1,52 @@
+{
+    "author": "TweenRex",
+    "bugs": {
+        "url": "https://github.com/tweenrex/tweenrex/issues"
+    },
+    "description": "Renderers for the TweenRex project",
+    "devDependencies": {
+        "@types/chai": "^4.0.4",
+        "@types/jest": "^21.1.6",
+        "@types/node": "^8.0.45",
+        "chai": "^4.1.2",
+        "del-cli": "^1.1.0",
+        "jest": "^21.2.1",
+        "ts-jest": "^21.2.1",
+        "tslint": "^5.7.0",
+        "typescript": "^2.6.1"
+    },
+    "homepage": "https://github.com/tweenrex/tweenrex#readme",
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+        },
+        "testRegex": "tests/.*/.*\\.ts$"
+    },
+    "license": "MIT",
+    "main": "index.js",
+    "name": "@tweenrex/render",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tweenrex/render"
+    },
+    "scripts": {
+        "build": "npm run build:node && npm run build:es2015",
+        "build:node": "tsc -p tsconfig.node.json",
+        "build:es2015": "tsc -p tsconfig.es2015.json",
+        "clean": "node_modules/.bin/del-cli -f dist lib lib.es2015 types",
+        "postversion": "git push --follow-tags && npm publish --access=\"public\"",
+        "preversion": "npm run rebuild",
+        "rebuild": "npm run clean && npm run build",
+        "test": "jest"
+    },
+    "types": "./types/index",
+    "typings": "./types/index",
+    "typeRoots": [
+        "node_modules/@types"
+    ],
+    "version": "0.0.0"
+}
