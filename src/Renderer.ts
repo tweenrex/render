@@ -4,7 +4,7 @@ const min = Math.min
 const max = Math.max
 const isArray = Array.isArray
 const cssVarExp = /^\-\-[a-z0-9\-]+$/i
-const numberExp = /(\-?\d*\.*?\d+)/
+const numberExp = /^\s*(\-?\d*\.?\d+)\s*$/
 
 function linear(o: number): number {
     return o
