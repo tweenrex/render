@@ -17,7 +17,7 @@
         "sourceMap": false,
         "strictNullChecks": false,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "es2015",
+        "target": "es5",
         "outDir": "lib.es2015"
     },
     "exclude": ["lib", "lib.es2015", "tests", "node_modules", "types"]
