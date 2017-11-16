@@ -28,6 +28,8 @@
     },
     "license": "MIT",
     "main": "index.js",
+    "jsnext:main": "./lib.es2015/index.js",
+    "module": "./lib.es2015/index.js",
     "name": "@tweenrex/render",
     "repository": {
         "type": "git",
