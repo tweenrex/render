@@ -50,5 +50,5 @@
     "typeRoots": [
         "node_modules/@types"
     ],
-    "version": "1.2.2"
+    "version": "1.2.3"
 }
