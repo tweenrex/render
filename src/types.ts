@@ -1,29 +1,65 @@
+/**
+ * Single item or array of items
+ */
+export type OneOrMany<T> = T | T[]
+
 export type ValueType = 'number' | 'discrete' | undefined
 
-export interface IRenderer {
-    (opts: IRenderOptions): (offset: number) => void
+export interface IEasing {
+    (offset: number): number
 }
 
-export interface ITargetRenderer {
-    target: any
-    prop: string
-    values: any[]
-    mix(a: any, b: any, offset: number): any
-    render(target: any, prop: string, t: any): void
+export interface ISecondaryRender {
+    (n: number, fn: IRenderFunction): void
+}
+
+export interface IFormatter {
+    (n: any): any
+}
+
+export interface IMixer {
+    (a: any, b: any, offset: number): any
+}
+
+export interface IRenderFunction {
+    (offset: number): void
+}
+
+export interface IRenderer {
+    (opts: IRenderFunctionOptions): IRenderFunction
 }
 
 export interface IRendererOptions {
-    value?: (target: any, prop: string) => any
-    parse?: (t: any) => any
-    mix?: (a: any, b: any, offset: number) => any
-    render?: (target: any, t: any) => void
-    resolve?: (targets: any) => any[]
-    type?: ValueType
+    parse?: (value: any, type?: string) => IRendererParseResult
+    getTarget?: ITargetAdapterProvider
 }
 
-export interface IRenderOptions {
-    targets: any
-    easing?: (n: number) => number
+export interface IRendererParseResult {
+    value: any
+    mix: IMixer
+    format?: IFormatter
+}
 
-    [key: string]: any
+export interface IRenderFunctionOptions {
+    targets: OneOrMany<{}>
+    easing?: IEasing
+    secondary?: ISecondaryRender
+
+    [propName: string]: Function | OneOrMany<{}> | OneOrMany<string | number> | IRenderValueOptions
+}
+
+export interface IRenderValueOptions {
+    value: OneOrMany<number | string>
+    easing?: IEasing
+    secondary?: ISecondaryRender
+    type?: 'number' | 'discrete' | 'terms'
+    format?: IFormatter
+    mix?: IMixer
+}
+
+export interface ITargetAdapterProvider {
+    (target: any, prop: string): {
+        get(target: {}, prop: string): any
+        set(target: {}, name: string, value: string)
+    }
 }

@@ -78,19 +78,6 @@ describe('interpolate(element)', () => {
         document.body.appendChild(target3)
     })
 
-    it('interpolates hyphenated attributes', () => {
-        const target = document.createElement('div')
-        target.setAttribute('data-id', '0')
-
-        const render = interpolate({
-            targets: target,
-            dataId: [0, 10]
-        })
-
-        render(0.5)
-        assert.equal(target.getAttribute('data-id'), '5')
-    })
-
     it('interpolates hyphenated properties', () => {
         const target = document.createElement('div')
         target.setAttribute('data-id', '0')

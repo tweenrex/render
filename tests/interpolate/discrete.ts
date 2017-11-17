@@ -6,30 +6,30 @@ describe('interpolate(discrete)', () => {
         const target = { innerHTML: '' }
         const render = interpolate({
             targets: target,
-            innerHTML:['yep', 'nope']
+            innerHTML: ['yep', 'nope']
         })
 
-        render(.5)
+        render(0.5)
         assert.equal(target.innerHTML, 'nope')
     })
     it('interpolates with 3+ discrete values', () => {
         const target = { innerHTML: '' }
         const render = interpolate({
             targets: target,
-            innerHTML:['yep', 'maybe', 'nope']
+            innerHTML: ['yep', 'maybe', 'nope']
         })
 
-        render(.74)
+        render(0.74)
         assert.equal(target.innerHTML, 'maybe')
     })
     it('interpolates with 5+ discrete values', () => {
         const target = { innerHTML: '' }
         const render = interpolate({
             targets: target,
-            innerHTML:['yep', 'nope', 'sometimes', 'maybe', 'try again later']
+            innerHTML: ['yep', 'nope', 'sometimes', 'maybe', 'try again later']
         })
 
-        render(.75)
+        render(0.75)
         assert.equal(target.innerHTML, 'maybe')
     })
     it('correctly uses the existing value as the starting point if property is not an array', () => {
@@ -39,7 +39,7 @@ describe('interpolate(discrete)', () => {
             innerHTML: 'yep'
         })
 
-        render(.5)
+        render(0.5)
         assert.equal(target.innerHTML, 'yep')
     })
 
@@ -50,7 +50,7 @@ describe('interpolate(discrete)', () => {
             innerHTML: 'yep'
         })
 
-        render(-.5)
+        render(-0.5)
         assert.equal(target.innerHTML, 'nope')
     })
 
@@ -63,5 +63,19 @@ describe('interpolate(discrete)', () => {
 
         render(1.5)
         assert.equal(target.innerHTML, 'yep')
+    })
+
+    it('allows type overrides to discrete', () => {
+        const target = { innerHTML: 0 }
+        const render = interpolate({
+            targets: target,
+            innerHTML: {
+                value: 1,
+                type: 'discrete'
+            }
+        })
+
+        render(1.5)
+        assert.equal(target.innerHTML, 1)
     })
 })
