@@ -1,4 +1,4 @@
-import { _ } from "./constants";
+import { _ } from './constants';
 
 export function isDOM(target: any) {
     return target instanceof Element
