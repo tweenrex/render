@@ -1,4 +1,4 @@
-import { isNumber } from '../internal/inspect';
+import { isNumber } from '../utilities/inspect';
 
 
 export function termsToString(aTerms) {

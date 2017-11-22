@@ -1,8 +1,8 @@
 import { IRenderer, OneOrMany, ITargetAdapter, IInterpolateTarget, IInterpolateOptions } from './types';
 import { renderer } from './renderer';
-import { resolveDomTargets } from './internal/resolveDomTargets';
-import { cssVarExp } from './internal/constants'
-import { isDOM, isNumeric, isString } from './internal/inspect'
+import { resolveDomTargets } from './utilities/resolveDomTargets';
+import { isDOM, isNumeric, isString } from './utilities/inspect'
+import { cssVarExp } from './utilities/constants'
 import { numberToString } from './converters/numberToString';
 import { stringToTerms } from './converters/stringToTerms';
 import { hexToRgb } from './converters/hexToRgb';
