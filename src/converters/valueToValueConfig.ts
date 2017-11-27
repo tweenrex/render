@@ -18,7 +18,6 @@ export function valueToValueConfig<T>(
         options = valueAsConfig
     }
 
-
     const targetAdapter = ro.getAdapter(target, prop)
     options.get = options.get || targetAdapter.get
     options.set = options.set || targetAdapter.set

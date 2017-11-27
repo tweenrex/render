@@ -38,7 +38,7 @@ export interface IMixer {
 }
 
 export interface IRenderFunction {
-    (offset: number): void
+    (offset: number, target?: any): void
 }
 
 export interface IRenderer<TTarget, TFunctionOptions extends IRenderFunctionOptions<TTarget>> {
@@ -48,6 +48,7 @@ export interface IRenderer<TTarget, TFunctionOptions extends IRenderFunctionOpti
 export interface IRenderFunctionOptions<T> {
     targets: OneOrMany<T>
     easing?: IEasing | IEasingAsync
+    debug?: (target: T, fn: IRenderFunction) => void
 }
 
 export interface IRendererOptions {
