@@ -6,6 +6,7 @@ export interface ICSSTransformOptions extends IRenderFunctionOptions<ICSSTransfo
     scaleX?: IRenderValue<number>
     scaleY?: IRenderValue<number>
     scale?: IRenderValue<number>
+    skewX?: IRenderValue<number>
     x?: IRenderValue<number>
     y?: IRenderValue<number>
 }
