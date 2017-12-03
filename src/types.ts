@@ -1,16 +1,39 @@
+
+export type ICSSTransformTarget = OneOrMany<Element | string>
+
+export interface ICSSTransformOptions extends IRenderFunctionOptions<ICSSTransformTarget> {
+    rotate?: IRenderValue<number>
+    scaleX?: IRenderValue<number>
+    scaleY?: IRenderValue<number>
+    scale?: IRenderValue<number>
+    skewX?: IRenderValue<number>
+    x?: IRenderValue<number>
+    y?: IRenderValue<number>
+}
+
+export interface ICSSTransform {
+    rotate: number
+    scaleX: number
+    scaleY: number
+    skewX: number
+    x: number
+    y: number
+}
+
 export interface IEasing {
     (offset: number): number
 }
 
-export interface IFormatter {
-    (n: any): any
+export interface IEasingAsync {
+    (n: number, target: any, fn: IRenderFunction): void
+    tr_type?: 'ASYNC'
 }
 
 export type IInterpolateTarget = {} | string
 
 export interface IInterpolateOptions extends IRenderFunctionOptions<IInterpolateTarget> {
     // some complexity in types is required to provide good type completion
-    [propName: string]: IRenderValueOptions | OneOrMany<string | number> | IEasing | OneOrMany<IInterpolateTarget>
+    [propName: string]: IRenderValue<string | number> | IEasing | IEasingAsync | OneOrMany<IInterpolateTarget>
 }
 
 export interface IMixer {
@@ -18,7 +41,7 @@ export interface IMixer {
 }
 
 export interface IRenderFunction {
-    (offset: number): void
+    (offset: number, target?: any): void
 }
 
 export interface IRenderer<TTarget, TFunctionOptions extends IRenderFunctionOptions<TTarget>> {
@@ -27,37 +50,60 @@ export interface IRenderer<TTarget, TFunctionOptions extends IRenderFunctionOpti
 
 export interface IRenderFunctionOptions<T> {
     targets: OneOrMany<T>
-    easing?: IEasing
-    secondary?: ISecondaryRender
+    easing?: IEasing | IEasingAsync
+    debug?: (target: T, fn: IRenderFunction) => void
 }
 
 export interface IRendererOptions {
-    parse(value: any, type?: string): IRendererParseResult
-    getAdapter(target: any, prop: string): ITargetAdapter
+    getEffects(target: any, props: string[], options: IRenderFunctionOptions<any>): IAnimationEffect[]
     getTargets(targets: OneOrMany<{} | string>): {}[]
 }
 
-export interface IRendererParseResult {
-    value: any
-    mix: IMixer
-    format?: IFormatter
+export interface IRenderPropertyFormatter {
+    (n: any): any
 }
 
-export interface IRenderValueOptions {
-    value: OneOrMany<number | string>
-    easing?: IEasing
-    secondary?: ISecondaryRender
+export interface IRenderPropertyBase {
+    easing?: IEasing | IEasingAsync
     type?: string
-    format?: IFormatter
+    format?: IRenderPropertyFormatter
     mix?: IMixer
 }
-export interface ISecondaryRender {
-    (n: number, fn: IRenderFunction): void
+
+export interface IAnimationEffect {
+    target: any;
+    prop: string;
+    value: any[]
+    easing?: IEasing | IEasingAsync
+    format?: IRenderPropertyFormatter
+    mix?: IMixer
+    set?: ITargetSetter
 }
 
-export interface ITargetAdapter {
-    get(target: {}, prop: string): any
-    set(target: {}, name: string, value: string)
+export interface IRenderPropertyKeyframes<T> extends IRenderPropertyBase {
+    value: OneOrMany<T>
+}
+
+export interface IRenderPropertyTransition<T> extends IRenderPropertyBase {
+    value: T
+}
+
+
+export type IRenderPropertyOptions<T> = IRenderPropertyTransition<T> | IRenderPropertyKeyframes<T>
+export type IRenderValue<T> = IRenderPropertyOptions<T> | OneOrMany<T>
+
+export interface ITargetGetter {
+    (target: {}, prop: string): any
+}
+
+export interface ITargetSetter {
+    (target: {}, name: string, value: string): void
+}
+
+export interface ITransformFn {
+    easing?: IEasing
+    type: string
+    value: number[]
 }
 
 /**
@@ -66,3 +112,10 @@ export interface ITargetAdapter {
 export type OneOrMany<T> = T | T[]
 
 export type ValueType = 'number' | 'discrete' | undefined
+
+// tslint:disable-next-line:interface-name
+export interface FloatArray {
+    length: number
+    [index: number]: number
+    join(separator: string): string;
+}

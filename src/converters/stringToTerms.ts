@@ -1,4 +1,4 @@
-import { isNumeric } from '../internal/inspect';
+import { isNumeric } from '../utilities/inspect';
 
 export function stringToTerms(value) {
     return value

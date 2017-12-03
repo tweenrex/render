@@ -1,11 +1,14 @@
-import { min, round, sqrt, clamp } from '../internal/math';
-import { isNumber } from '../internal/inspect';
+import { min, round, sqrt, clamp } from '../utilities/math';
+import { isNumber } from '../utilities/inspect';
+import { sq255 } from '../utilities/constants';
 import { mixNumber } from './mixNumber';
 import { mixDiscrete } from './mixDiscrete';
-import { sq255 } from '../internal/constants';
 
-export function mixTerms(aTerms, bTerms, o) {
+export function mixTerms(aTerms: any[], bTerms: any[], o: number) {
     const ilen = min(aTerms.length, bTerms.length)
+    if (isNaN(ilen)) {
+        console.log(aTerms, bTerms)
+    }
     const result = Array(ilen)
 
     let rgbLocked = 0
