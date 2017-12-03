@@ -2,11 +2,11 @@ import { assert } from 'chai'
 import { interpolate } from '../../src/interpolate'
 import { IEasingAsync } from '../../src/index';
 
-describe('interpolate(secondary)', () => {
+describe('interpolate(async easing)', () => {
     it('handles secondary actions at the interpolator level', () => {
         const target = { x: 0 }
 
-        const asyncEasing = ((o, fn) => fn(0.5)) as IEasingAsync
+        const asyncEasing = ((o, t, fn) => fn(0.5, t)) as IEasingAsync
         asyncEasing.tr_type = 'ASYNC'
 
         const render = interpolate({
@@ -22,7 +22,7 @@ describe('interpolate(secondary)', () => {
 
     it('handles secondary actions at the interpolator level', () => {
         const target = { x: 0 }
-        const asyncEasing = ((o, fn) => fn(0.5)) as IEasingAsync
+        const asyncEasing = ((o, t, fn) => fn(0.5, t)) as IEasingAsync
         asyncEasing.tr_type = 'ASYNC'
 
         const render = interpolate({

@@ -14,7 +14,8 @@
         "jest": "^21.2.1",
         "ts-jest": "^21.2.1",
         "tslint": "^5.7.0",
-        "typescript": "^2.6.1"
+        "typescript": "^2.6.1",
+        "xcssmatrix": "^0.2.2"
     },
     "homepage": "https://github.com/tweenrex/tweenrex#readme",
     "jest": {

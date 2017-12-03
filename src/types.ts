@@ -2,19 +2,21 @@
 export type ICSSTransformTarget = OneOrMany<Element | string>
 
 export interface ICSSTransformOptions extends IRenderFunctionOptions<ICSSTransformTarget> {
-    xPercent?: IRenderValue<number>
-    yPercent?: IRenderValue<number>
+    rotate?: IRenderValue<number>
+    scaleX?: IRenderValue<number>
+    scaleY?: IRenderValue<number>
+    scale?: IRenderValue<number>
     x?: IRenderValue<number>
     y?: IRenderValue<number>
-    z?: IRenderValue<number>
-    rotateX?: IRenderValue<number>
-    rotateY?: IRenderValue<number>
-    rotate?: IRenderValue<number>
-    scale?: IRenderValue<number>
 }
 
-export interface ICSSTransformOptionsInner extends IRenderFunctionOptions<ICSSTransformTarget> {
-    transform: ITransformFn[]
+export interface ICSSTransform {
+    rotate: number
+    scaleX: number
+    scaleY: number
+    skewX: number
+    x: number
+    y: number
 }
 
 export interface IEasing {
@@ -22,7 +24,7 @@ export interface IEasing {
 }
 
 export interface IEasingAsync {
-    (n: number, fn: IRenderFunction): void
+    (n: number, target: any, fn: IRenderFunction): void
     tr_type?: 'ASYNC'
 }
 
@@ -52,15 +54,8 @@ export interface IRenderFunctionOptions<T> {
 }
 
 export interface IRendererOptions {
-    parse(value: any, type?: string): IRendererParseResult
-    getAdapter(target: any, prop: string): ITargetAdapter
+    getEffects(target: any, props: string[], options: IRenderFunctionOptions<any>): IAnimationEffect[]
     getTargets(targets: OneOrMany<{} | string>): {}[]
-}
-
-export interface IRendererParseResult {
-    value: any
-    mix: IMixer
-    format?: IRenderPropertyFormatter
 }
 
 export interface IRenderPropertyFormatter {
@@ -72,7 +67,15 @@ export interface IRenderPropertyBase {
     type?: string
     format?: IRenderPropertyFormatter
     mix?: IMixer
-    get?: ITargetGetter
+}
+
+export interface IAnimationEffect {
+    target: any;
+    prop: string;
+    value: any[]
+    easing?: IEasing | IEasingAsync
+    format?: IRenderPropertyFormatter
+    mix?: IMixer
     set?: ITargetSetter
 }
 
@@ -87,11 +90,6 @@ export interface IRenderPropertyTransition<T> extends IRenderPropertyBase {
 
 export type IRenderPropertyOptions<T> = IRenderPropertyTransition<T> | IRenderPropertyKeyframes<T>
 export type IRenderValue<T> = IRenderPropertyOptions<T> | OneOrMany<T>
-
-export interface ITargetAdapter {
-    get: ITargetGetter
-    set: ITargetSetter
-}
 
 export interface ITargetGetter {
     (target: {}, prop: string): any
