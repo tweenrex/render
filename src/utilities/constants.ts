@@ -7,6 +7,5 @@ export const _ = undefined as undefined
 export const sq255 = 65025
 
 export const TARGETS = 'targets'
-export const SECONDARY = 'secondary'
 export const EASING = 'easing'
-export const builtInRenderOptions = [TARGETS, SECONDARY, EASING]
+export const builtInRenderOptions = [TARGETS, EASING]

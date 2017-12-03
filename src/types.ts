@@ -80,6 +80,11 @@ export interface IAnimationEffect {
     set?: ITargetSetter
 }
 
+export interface ITargetAdapter {
+    get?: ITargetGetter
+    set?: ITargetSetter
+}
+
 export interface IRenderPropertyKeyframes<T> extends IRenderPropertyBase {
     value: OneOrMany<T>
 }
@@ -112,10 +117,3 @@ export interface ITransformFn {
 export type OneOrMany<T> = T | T[]
 
 export type ValueType = 'number' | 'discrete' | undefined
-
-// tslint:disable-next-line:interface-name
-export interface FloatArray {
-    length: number
-    [index: number]: number
-    join(separator: string): string;
-}

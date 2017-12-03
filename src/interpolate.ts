@@ -1,7 +1,7 @@
 import {
     IRenderer, OneOrMany, IInterpolateTarget, IInterpolateOptions,
     IRenderPropertyOptions, IMixer, IRenderPropertyFormatter,
-    IRenderFunctionOptions, IAnimationEffect, ITargetGetter, ITargetSetter
+    IRenderFunctionOptions, IAnimationEffect, ITargetAdapter
 } from './types'
 import { renderer } from './renderer'
 import { resolveDomTargets } from './utilities/resolveDomTargets'
@@ -146,10 +146,4 @@ export interface IRendererParseResult {
     value: any
     mix: IMixer
     format?: IRenderPropertyFormatter
-}
-
-
-export interface ITargetAdapter {
-    get: ITargetGetter
-    set: ITargetSetter
 }

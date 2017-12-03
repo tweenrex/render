@@ -12,6 +12,5 @@ export function forceTick() {
     for (let i = 0; i < ops.length; i++) {
         ops[i]()
     }
-    ops.length = 0
-    frame = 0
+    frame = ops.length = 0
 }
