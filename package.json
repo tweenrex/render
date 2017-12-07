@@ -55,7 +55,7 @@
   "typeRoots": [
     "node_modules/@types"
   ],
-  "version": "1.4.0",
+  "version": "1.4.2",
   "publishConfig": {
     "access": "public"
   }
