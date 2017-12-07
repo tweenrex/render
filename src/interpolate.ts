@@ -55,7 +55,8 @@ export const interpolate: IRenderer<IInterpolateTarget, IInterpolateOptions> = r
             const targetAdapter = getAdapter(target, prop)
             effect.set = effect.set || targetAdapter.set
 
-            if (!isArray(value2)) {
+            const isTransition = !isArray(value2)
+            if (isTransition) {
                 // if not an array, detect starting property
                 effect.value = [targetAdapter.get(target, prop), value2]
             } else {
@@ -68,11 +69,14 @@ export const interpolate: IRenderer<IInterpolateTarget, IInterpolateOptions> = r
                 const r = effect.value[j]
                 const parsed = parse(r, type)
                 values[j] = parsed.value
-                if (!effect.mix) {
-                    effect.mix = parsed.mix
-                }
-                if (!effect.format) {
-                    effect.format = parsed.format
+
+                if (!isTransition || j !== 0) {
+                    if (!effect.mix) {
+                        effect.mix = parsed.mix
+                    }
+                    if (!effect.format) {
+                        effect.format = parsed.format
+                    }
                 }
             }
             effect.value = values
@@ -95,6 +99,11 @@ function parse(value: any, type?: string): IRendererParseResult {
             type = NUMBER
         } else if (isString(value) && /\d*/.test(value)) {
             type = TERMS
+        } else if (!value) {
+            return {
+                value: '',
+                mix: mixDiscrete
+            }
         }
     }
 
