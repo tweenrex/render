@@ -114,4 +114,19 @@ describe('interpolate(element)', () => {
         render(0.5)
         assert.equal(target.style.opacity, '0.5')
     })
+
+    it('transitions from an existing value', () => {
+        const target = document.createElement('div')
+        target.style.opacity = '1'
+        document.body.appendChild(target)
+
+        const render = interpolate({
+            targets: target,
+            opacity: 0
+        })
+
+        render(0.5)
+        assert.equal(target.style.opacity, '0.5')
+        document.body.removeChild(target)
+    })
 })
