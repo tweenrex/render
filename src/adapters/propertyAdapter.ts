@@ -1,4 +1,4 @@
-import { ITargetAdapter } from '../types';
+import { ITargetAdapter } from '../types'
 
 export const propertyAdapter: ITargetAdapter = {
     get(target: {}, name: string) {

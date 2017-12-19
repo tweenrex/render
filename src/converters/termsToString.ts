@@ -1,5 +1,4 @@
-import { isNumber } from '../utilities/inspect';
-
+import { isNumber } from '../utilities/inspect'
 
 export function termsToString(aTerms) {
     const NUM = 1

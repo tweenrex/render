@@ -1,7 +1,14 @@
 import {
-    IRenderer, OneOrMany, IInterpolateTarget, IInterpolateOptions,
-    IRenderPropertyOptions, IMixer, IRenderPropertyFormatter,
-    IRenderFunctionOptions, IAnimationEffect, ITargetAdapter
+    IRenderer,
+    OneOrMany,
+    IInterpolateTarget,
+    IInterpolateOptions,
+    IRenderPropertyOptions,
+    IMixer,
+    IRenderPropertyFormatter,
+    IRenderFunctionOptions,
+    IAnimationEffect,
+    ITargetAdapter
 } from './types'
 import { renderer } from './renderer'
 import { resolveDomTargets } from './utilities/resolveDomTargets'
@@ -18,7 +25,7 @@ import { styleAdapter } from './adapters/styleAdapter'
 import { mixNumber } from './mixers/mixNumber'
 import { mixTerms } from './mixers/mixTerms'
 import { mixDiscrete } from './mixers/mixDiscrete'
-import { isArray } from './utilities/arrays';
+import { isArray } from './utilities/arrays'
 
 const TERMS = 'terms'
 const NUMBER = 'number'
@@ -91,7 +98,6 @@ export const interpolate: IRenderer<IInterpolateTarget, IInterpolateOptions> = r
         return results
     }
 })
-
 
 function parse(value: any, type?: string): IRendererParseResult {
     if (!type) {

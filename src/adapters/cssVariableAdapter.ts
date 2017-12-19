@@ -1,4 +1,4 @@
-import { ITargetAdapter } from '../types';
+import { ITargetAdapter } from '../types'
 
 export const cssVariableAdapter: ITargetAdapter = {
     get(target: HTMLElement, name: string) {

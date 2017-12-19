@@ -1,4 +1,4 @@
-import { ITargetAdapter } from '../types';
+import { ITargetAdapter } from '../types'
 
 export const styleAdapter: ITargetAdapter = {
     get(target: HTMLElement, prop: string) {

@@ -1,4 +1,3 @@
-
 export type ICSSTransformTarget = OneOrMany<Element | string>
 
 export interface ICSSTransformOptions extends IRenderFunctionOptions<ICSSTransformTarget> {
@@ -71,8 +70,8 @@ export interface IRenderPropertyBase {
 }
 
 export interface IAnimationEffect {
-    target: any;
-    prop: string;
+    target: any
+    prop: string
     value: any[]
     easing?: IEasing | IEasingAsync
     format?: IRenderPropertyFormatter
@@ -92,7 +91,6 @@ export interface IRenderPropertyKeyframes<T> extends IRenderPropertyBase {
 export interface IRenderPropertyTransition<T> extends IRenderPropertyBase {
     value: T
 }
-
 
 export type IRenderPropertyOptions<T> = IRenderPropertyTransition<T> | IRenderPropertyKeyframes<T>
 export type IRenderValue<T> = IRenderPropertyOptions<T> | OneOrMany<T>

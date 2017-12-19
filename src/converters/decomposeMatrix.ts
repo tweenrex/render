@@ -1,8 +1,7 @@
 import { degrees, sqrt, atan2, atan } from '../utilities/math'
-import { ICSSTransform } from '../types';
+import { ICSSTransform } from '../types'
 
-
-let matrix: any;
+let matrix: any
 
 export function decomposeMatrix(value: string): ICSSTransform {
     if (!matrix) {
@@ -28,7 +27,7 @@ export function decomposeMatrix(value: string): ICSSTransform {
     }
 
     // determine y scale
-    const scaleY =  sqrt(c * c + d * d)
+    const scaleY = sqrt(c * c + d * d)
     if (scaleY) {
         c /= scaleY
         d /= scaleY

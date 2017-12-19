@@ -1,6 +1,6 @@
-import { isArray, pushAll } from './arrays';
-import { isString } from './inspect';
-import { OneOrMany } from '../types';
+import { isArray, pushAll } from './arrays'
+import { isString } from './inspect'
+import { OneOrMany } from '../types'
 
 export function resolveDomTargets(targets: OneOrMany<string | Element | {}>, results: any[]): void {
     if (isArray(targets)) {

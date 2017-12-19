@@ -1,8 +1,8 @@
-import { min, round, sqrt, clamp } from '../utilities/math';
-import { isNumber } from '../utilities/inspect';
-import { sq255 } from '../utilities/constants';
-import { mixNumber } from './mixNumber';
-import { mixDiscrete } from './mixDiscrete';
+import { min, round, sqrt, clamp } from '../utilities/math'
+import { isNumber } from '../utilities/inspect'
+import { sq255 } from '../utilities/constants'
+import { mixNumber } from './mixNumber'
+import { mixDiscrete } from './mixDiscrete'
 
 export function mixTerms(aTerms: any[], bTerms: any[], o: number) {
     const ilen = min(aTerms.length, bTerms.length)

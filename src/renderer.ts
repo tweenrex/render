@@ -62,10 +62,7 @@ function getRenderItem(config: IAnimationEffect) {
     }
 }
 
-function getEasedFunction(
-    options: { easing?: IEasing | IEasingAsync },
-    fn: (offset: number, target2?: any) => void
-) {
+function getEasedFunction(options: { easing?: IEasing | IEasingAsync }, fn: (offset: number, target2?: any) => void) {
     return (offset: number, target2?: any) => {
         const easing = options.easing as any
         if (!easing) {
