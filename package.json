@@ -21,7 +21,10 @@
     },
     "homepage": "https://github.com/tweenrex/tweenrex#readme",
     "jest": {
-        "moduleFileExtensions": ["ts", "js"],
+        "moduleFileExtensions": [
+            "ts",
+            "js"
+        ],
         "transform": {
             "^.+\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
         },
@@ -36,7 +39,9 @@
         "type": "git",
         "url": "https://github.com/tweenrex/render"
     },
-    "pre-commit": ["format"],
+    "pre-commit": [
+        "format"
+    ],
     "scripts": {
         "build": "npm run build:node && npm run build:es2015",
         "build:node": "tsc -p tsconfig.node.json",
@@ -53,7 +58,9 @@
     },
     "types": "./types/index",
     "typings": "./types/index",
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+        "node_modules/@types"
+    ],
     "version": "1.4.2",
     "publishConfig": {
         "access": "public"
